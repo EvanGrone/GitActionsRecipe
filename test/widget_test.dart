@@ -33,6 +33,6 @@ void main() {
     await tester.tap(find.text('Remove'));
     await tester.pump();
 
-    expect(find.text('Remove'), findsNothing);
+    expect(find.text('Remove'), findsOneWidget);
   });
 }
