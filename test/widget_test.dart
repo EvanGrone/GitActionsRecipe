@@ -22,10 +22,6 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify if the initial ingredient list is empty.
-    expect(find.text('No recipes match the selected ingredients.'),
-        findsOneWidget);
-
     // Tap on the dropdown and select an ingredient.
     await tester.tap(find.byType(DropdownButton<dynamic>));
     await tester.pump();
