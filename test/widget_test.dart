@@ -12,8 +12,7 @@ import 'package:flutter_github_workflow/main.dart';
 void main() {
   testWidgets('App UI Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester
-        .pumpWidget(const MyApp());
+    await tester.pumpWidget(const MyApp());
 
     // Verify that the app title is displayed.
     expect(find.text('Recipe App'), findsOneWidget);
@@ -57,3 +56,4 @@ void main() {
     // Verify that the selected ingredient is removed from the list.
     expect(find.text('Blueberries'), findsNothing);
   });
+}
