@@ -172,7 +172,7 @@ class _IngredientsAppState extends State<IngredientsApp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DropdownButton<String>(
+            DropdownButton<dynamic>(
               value: ingredients.isNotEmpty ? ingredients[0] : null,
               onChanged: (value) {
                 setState(() {
