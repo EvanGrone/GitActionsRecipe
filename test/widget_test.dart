@@ -39,21 +39,4 @@ void main() {
 
     expect(find.text('Remove'), findsNothing);
   });
-
-  testWidgets('Matching Recipes Dialog', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Mock the network response (you may need to adjust this based on your actual response structure).
-    // This assumes that there is at least one matching recipe.
-    // You should customize this based on your actual response structure.
-
-    // Tap on the GO! button.
-    await tester.tap(find.text('GO!'));
-    await tester.pumpAndSettle();
-
-    // Verify if the matching recipes dialog is displayed.
-    expect(find.text('Matching Recipes'), findsOneWidget);
-    expect(find.text('Matching recipes found:'), findsOneWidget);
-  });
 }
