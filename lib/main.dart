@@ -7,13 +7,15 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Recipe App',
       home: IngredientsApp(),
     );
@@ -21,7 +23,10 @@ class MyApp extends StatelessWidget {
 }
 
 class IngredientsApp extends StatefulWidget {
+  const IngredientsApp({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _IngredientsAppState createState() => _IngredientsAppState();
 }
 
