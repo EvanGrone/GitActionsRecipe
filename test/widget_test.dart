@@ -12,7 +12,8 @@ import 'package:flutter_github_workflow/main.dart';
 void main() {
   testWidgets('App UI Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp()); // Replace with your app's main widget
+    await tester
+        .pumpWidget(const MyApp()); // Replace with your app's main widget
 
     // Verify that the app title is displayed.
     expect(find.text('Recipe App'), findsOneWidget);
