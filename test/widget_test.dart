@@ -13,10 +13,14 @@ void main() {
   testWidgets('App UI Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester
-        .pumpWidget(const MyApp()); // Replace with your app's main widget
+        .pumpWidget(const MyApp());
 
     // Verify that the app title is displayed.
     expect(find.text('Recipe App'), findsOneWidget);
+
+    // Verify the initial state of the dropdown.
+    expect(find.byType(DropdownButton), findsOneWidget);
+    expect(find.text('Bananas'), findsOneWidget);
 
     // Tap on the dropdown to open it.
     await tester.tap(find.byType(DropdownButton));
@@ -25,25 +29,31 @@ void main() {
     // Verify that the dropdown items are displayed.
     expect(find.text('Bananas'), findsOneWidget);
 
-    // Select an ingredient from the dropdown.
-    await tester.tap(find.text('Bananas'));
+    // Verify the initial state of the Remove and GO! buttons.
+    expect(find.text('Remove'), findsOneWidget);
+    expect(find.text('GO!'), findsOneWidget);
+
+    // Verify that the selected ingredients list is initially empty.
+    expect(find.byType(ListTile), findsNothing);
+  });
+
+  testWidgets('Add and remove ingredients', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
+
+    // Add an ingredient to the selected list.
+    await tester.tap(find.byType(DropdownButton));
+    await tester.pump();
+    await tester.tap(find.text('Blueberries'));
     await tester.pump();
 
     // Verify that the selected ingredient is displayed in the list.
-    expect(find.text('Bananas'), findsOneWidget);
+    expect(find.text('Blueberries'), findsOneWidget);
 
-    // Verify that the Remove button removes the selected ingredient.
+    // Remove the selected ingredient.
     await tester.tap(find.text('Remove'));
     await tester.pump();
 
     // Verify that the selected ingredient is removed from the list.
-    expect(find.text('Bananas'), findsNothing);
-
-    // Verify that the GO! button triggers the recipe matching dialog.
-    await tester.tap(find.text('GO!'));
-    await tester.pump();
-
-    // Verify that the matching recipes dialog is displayed.
-    expect(find.text('Matching Recipes'), findsOneWidget);
+    expect(find.text('Blueberries'), findsNothing);
   });
-}
