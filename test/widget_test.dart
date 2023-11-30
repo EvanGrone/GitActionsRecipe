@@ -7,24 +7,45 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:flutter_github_workflow/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('App UI Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp()); // Replace with your app's main widget
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the app title is displayed.
+    expect(find.text('Recipe App'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Verify that the initial ingredient dropdown is not empty.
+    expect(find.byType(DropdownButton), findsOneWidget);
+
+    // Tap on the dropdown to open it.
+    await tester.tap(find.byType(DropdownButton));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that the dropdown items are displayed.
+    expect(find.text('Bananas'), findsOneWidget);
+
+    // Select an ingredient from the dropdown.
+    await tester.tap(find.text('Bananas'));
+    await tester.pump();
+
+    // Verify that the selected ingredient is displayed in the list.
+    expect(find.text('Bananas'), findsOneWidget);
+
+    // Verify that the Remove button removes the selected ingredient.
+    await tester.tap(find.text('Remove'));
+    await tester.pump();
+
+    // Verify that the selected ingredient is removed from the list.
+    expect(find.text('Bananas'), findsNothing);
+
+    // Verify that the GO! button triggers the recipe matching dialog.
+    await tester.tap(find.text('GO!'));
+    await tester.pump();
+
+    // Verify that the matching recipes dialog is displayed.
+    expect(find.text('Matching Recipes'), findsOneWidget);
   });
 }
