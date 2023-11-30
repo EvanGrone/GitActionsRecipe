@@ -39,34 +39,7 @@ class IngredientsApp extends StatefulWidget {
 
 class _IngredientsAppState extends State<IngredientsApp> {
   List<String> selectedIngredients = [];
-  List<String> ingredients = [
-    'Bananas',
-    'Blueberries',
-    'Flour',
-    'Milk',
-    'Butter',
-    'Cinnamon',
-    'Vanilla Extract',
-    'Salt',
-    'Nutmeg',
-    'Baking Soda',
-    'Baking Powder',
-    'Eggs',
-    'Olive Oil',
-    'Carrots',
-    'Graham Crackers',
-    'Yeast',
-    'Brown Sugar',
-    'Powdered Sugar',
-    'Cream Cheese',
-    'Lemons',
-    'Maple Syrup',
-    'Applesauce',
-    'Vegetable Oil',
-    'Peanut Butter',
-    'Water',
-    'Chocolate'
-  ];
+  List<String> ingredients = [];
 
   Map<String, dynamic> recipes = {};
 
@@ -85,13 +58,20 @@ class _IngredientsAppState extends State<IngredientsApp> {
           recipes = results;
         });
 
-        /*for (var entry in recipes.entries) {
-          String key = entry.key;
-          String value = entry.value;
-
-          print('$key: $value');
-          print('done');
-        }*/
+        for (var entry in recipes.entries) {
+          //dynamic key = entry.key;
+          var value = entry.value;
+          List<String> ingrdtList = value.split(', ');
+          for (String ingrdt in ingrdtList) {
+            if (!ingredients.contains(ingrdt)) {
+              if (kDebugMode) {
+                print(ingrdt);
+              }
+              ingredients.add(ingrdt);
+            }
+          }
+        }
+        ingredients.sort();
       } else {
         // Handle the error, for example, print the status code
         if (kDebugMode) {
@@ -172,7 +152,7 @@ class _IngredientsAppState extends State<IngredientsApp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DropdownButton<dynamic>(
+            DropdownButton<String>(
               value: ingredients.isNotEmpty ? ingredients[0] : null,
               onChanged: (value) {
                 setState(() {
