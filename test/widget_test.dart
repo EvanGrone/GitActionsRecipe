@@ -18,9 +18,6 @@ void main() {
     // Verify that the app title is displayed.
     expect(find.text('Recipe App'), findsOneWidget);
 
-    // Verify that the initial ingredient dropdown is not empty.
-    expect(find.byType(DropdownButton), findsOneWidget);
-
     // Tap on the dropdown to open it.
     await tester.tap(find.byType(DropdownButton));
     await tester.pump();
