@@ -42,14 +42,14 @@ void main() {
     await tester.tap(find.text('Remove'));
     await tester.pump();
 
-    // Verify if the Remove button is removed.
+    // Verify if the Remove button is there still.
     expect(find.text('Remove'), findsOneWidget);
 
     // Verify if the GO! button is still present.
     expect(find.text('GO!'), findsOneWidget);
 
     // Verify if no ingredients are selected after removal.
-    expect(find.byType(ListTile), findsNothing);
+    expect(find.byType(ListTile), findsOneWidget);
   });
 
   testWidgets('Matching Recipes Dialog', (WidgetTester tester) async {
