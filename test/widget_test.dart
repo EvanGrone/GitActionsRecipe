@@ -69,4 +69,13 @@ void main() {
     // Verify if the dialog is closed.
     expect(find.text('Matching Recipes'), findsNothing);
   });
+
+  testWidgets('Check initial ingredients list', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+
+    // Verify if the initial ingredients list is displayed.
+    for (final ingredient in ['Bananas', 'Blueberries', 'Flour', 'Milk']) {
+      expect(find.text(ingredient), findsOneWidget);
+    }
+  });
 }
