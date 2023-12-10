@@ -9,20 +9,30 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_github_workflow/main.dart';
 
 void main() {
-  testWidgets('Widget builds', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Widget builds and initial state', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
 
-    // Verify if the title is present in the app.
+    // Verify if the app title is present.
     expect(find.text('Recipe App'), findsOneWidget);
+
+    // Verify if the initial ingredient is present in the dropdown.
+    expect(find.text('Bananas'), findsOneWidget);
+
+    // Verify if the Remove button is not initially present.
+    expect(find.text('Remove'), findsNothing);
+
+    // Verify if the GO! button is present.
+    expect(find.text('GO!'), findsOneWidget);
+
+    // Verify if no ingredients are initially selected.
+    expect(find.byType(ListTile), findsNothing);
   });
 
-  testWidgets('Ingredient selection', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Ingredient selection and removal', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
 
     // Tap on the dropdown and select an ingredient.
-    await tester.tap(find.byType(DropdownButton<dynamic>));
+    await tester.tap(find.byType(DropdownButton<String>));
     await tester.pump();
 
     // Verify if the selected ingredient is displayed.
@@ -32,6 +42,31 @@ void main() {
     await tester.tap(find.text('Remove'));
     await tester.pump();
 
-    expect(find.text('Remove'), findsOneWidget);
+    // Verify if the Remove button is removed.
+    expect(find.text('Remove'), findsNothing);
+
+    // Verify if the GO! button is still present.
+    expect(find.text('GO!'), findsOneWidget);
+
+    // Verify if no ingredients are selected after removal.
+    expect(find.byType(ListTile), findsNothing);
+  });
+
+  testWidgets('Matching Recipes Dialog', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+
+    // Tap on the GO! button.
+    await tester.tap(find.text('GO!'));
+    await tester.pumpAndSettle();
+
+    // Verify if the matching recipes dialog is displayed.
+    expect(find.text('Matching Recipes'), findsOneWidget);
+
+    // Tap on OK to close the dialog.
+    await tester.tap(find.text('OK'));
+    await tester.pumpAndSettle();
+
+    // Verify if the dialog is closed.
+    expect(find.text('Matching Recipes'), findsNothing);
   });
 }
