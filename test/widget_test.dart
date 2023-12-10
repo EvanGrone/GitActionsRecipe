@@ -98,11 +98,14 @@ void main() {
     await tester.tap(find.text('GO!'));
     await tester.pumpAndSettle();
 
+    // Print the widget tree for debugging.
+    debugDumpApp();
+
     // Verify if the matching recipes dialog is displayed.
     expect(find.text('Matching Recipes'), findsOneWidget);
 
     // Verify if the dialog mentions the expected recipe with Butter.
-    expect(find.text('Matching Recipes'), findsOneWidget);
+    expect(find.text('Matching recipes found:\nCake'), findsOneWidget);
 
     // Tap on OK to close the dialog.
     await tester.tap(find.text('OK'));
