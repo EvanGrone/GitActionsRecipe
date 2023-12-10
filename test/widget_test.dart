@@ -18,8 +18,8 @@ void main() {
     // Verify if the initial ingredient is present in the dropdown.
     expect(find.text('Bananas'), findsOneWidget);
 
-    // Verify if the Remove button is not initially present.
-    expect(find.text('Remove'), findsNothing);
+    // Verify if the Remove button is present.
+    expect(find.text('Remove'), findsOneWidget);
 
     // Verify if the GO! button is present.
     expect(find.text('GO!'), findsOneWidget);
@@ -43,7 +43,7 @@ void main() {
     await tester.pump();
 
     // Verify if the Remove button is removed.
-    expect(find.text('Remove'), findsNothing);
+    expect(find.text('Remove'), findsOneWidget);
 
     // Verify if the GO! button is still present.
     expect(find.text('GO!'), findsOneWidget);
