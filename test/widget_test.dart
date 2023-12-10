@@ -81,7 +81,7 @@ void main() {
     await tester.pump();
 
     // Verify if the selected ingredient is displayed.
-    expect(find.text('Remove'), findsAny);
-    expect(find.text('Butter'), findsNothing);
+    expect(find.text('Remove'), findsOneWidget);
+    expect(find.text('Butter'), findsOneWidget);
   });
 }
