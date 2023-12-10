@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "26758504344",
+    "firebase_url": "https://recipeapp-98710-default-rtdb.firebaseio.com",
+    "project_id": "recipeapp-98710",
+    "storage_bucket": "recipeapp-98710.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26758504344:android:746abba9b7154aa44395ed",
+        "android_client_info": {
+          "package_name": "com.example.flutter_github_workflow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBahNuljipTuDjE0etUWleqkZ7bNvoaR-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
