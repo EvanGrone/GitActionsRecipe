@@ -82,6 +82,6 @@ void main() {
 
     // Verify if the selected ingredient is displayed.
     expect(find.text('Remove'), findsAny);
-    expect(find.text('Bananas'), findsNothing);
+    expect(find.text('Butter'), findsNothing);
   });
 }
