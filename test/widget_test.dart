@@ -77,7 +77,7 @@ void main() {
     await tester.pump();
 
     // Tap on the first ingredient in the dropdown.
-    await tester.tap(find.text('Bananas'));
+    await tester.tap(find.text('Butter'));
     await tester.pump();
 
     // Verify if the selected ingredient is displayed.
