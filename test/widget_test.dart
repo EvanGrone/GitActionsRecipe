@@ -69,13 +69,19 @@ void main() {
     // Verify if the dialog is closed.
     expect(find.text('Matching Recipes'), findsNothing);
   });
-
-  testWidgets('Check initial ingredients list', (WidgetTester tester) async {
+  testWidgets('Select ingredient from dropdown', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
 
-    // Verify if the initial ingredients list is displayed.
-    for (final ingredient in ['Bananas', 'Blueberries', 'Flour', 'Milk']) {
-      expect(find.text(ingredient), findsOneWidget);
-    }
+    // Tap on the dropdown and select an ingredient.
+    await tester.tap(find.byType(DropdownButton<String>));
+    await tester.pump();
+
+    // Tap on the first ingredient in the dropdown.
+    await tester.tap(find.text('Bananas'));
+    await tester.pump();
+
+    // Verify if the selected ingredient is displayed.
+    expect(find.text('Remove'), findsOneWidget);
+    expect(find.text('Bananas'), findsNothing);
   });
 }
