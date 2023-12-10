@@ -102,7 +102,7 @@ void main() {
     expect(find.text('Matching Recipes'), findsOneWidget);
 
     // Verify if the dialog mentions the expected recipe with Butter.
-    expect(find.text('Matching recipes'), findsOneWidget);
+    expect(find.text('Matching Recipes'), findsOneWidget);
 
     // Tap on OK to close the dialog.
     await tester.tap(find.text('OK'));
